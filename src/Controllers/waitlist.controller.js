@@ -4,19 +4,16 @@ import {sendingMail} from "../Utils/sendMail.js";
 
 const addUserToWaitList = async (req, res) => {
     const { email } = req.body;
-    console.log(email);
+    let alreadyExists = false;
     try {
-        console.log("here");
         const user = await WaitList.findOne({ email });
-        console.log("here");
         if (user) {
+            alreadyExists = true;
             throw new ApiError(400, 'User already exists in waitlist');
         }
-        console.log("here");
         const newUser = await WaitList.create({
             email
         });
-        console.log("here");
         sendingMail(email, "We love you", "", `
             <!DOCTYPE html>
             <html lang="en">
@@ -88,6 +85,12 @@ const addUserToWaitList = async (req, res) => {
             data: newUser
         });
     } catch (err) {
+        if (alreadyExists) {
+            return res.status(400).json({
+                message: "User already exists in waitlist",
+                error: err
+            });
+        }
         return res.status(500).json({
             message: "Error adding user to waitlist",
             error: err
