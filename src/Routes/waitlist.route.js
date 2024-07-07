@@ -5,5 +5,6 @@ const waitlistRoutes = Router();
 
 waitlistRoutes.post("/addToWaitlist", addUserToWaitList);
 waitlistRoutes.post("/removeFromWaitlist", removeUserFromWaitList);
+waitlistRoutes.get("/getWaitlist", getWaitList);
 
 export { waitlistRoutes };
