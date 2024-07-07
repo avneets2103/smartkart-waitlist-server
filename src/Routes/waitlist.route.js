@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { addUserToWaitList, removeUserFromWaitList } from "../Controllers/waitlist.controller.js";  
+import { addUserToWaitList, removeUserFromWaitList, getWaitList } from "../Controllers/waitlist.controller.js";  
 
 const waitlistRoutes = Router();
 
