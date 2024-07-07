@@ -121,8 +121,11 @@ const getWaitList = async (req, res) => {
         const waitList = await WaitList.find();
         return res.status(200).json({
             message: "Waitlist fetched successfully",
-            data: waitList
-        });
+            data: {
+                total: waitList.length,
+                waitlist: waitList,
+            }
+        })
     } catch (err) {
         throw new ApiError(400, 'Fetching waitlist failed');
     }
