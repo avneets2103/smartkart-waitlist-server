@@ -16,4 +16,9 @@ app.use(express.urlencoded({
 app.use(express.static("public"));
 app.use(cookieParser());
 
+// importing routes
+import { waitlistRoutes } from "./Routes/waitlist.route.js";
+
+app.use("/api/v1/waitlist", waitlistRoutes);
+
 export {app}
