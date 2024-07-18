@@ -22,7 +22,7 @@ connectDB()
         console.log("Server listening on port " + process.env.PORT);
     })
     // Call makeAPICall every 5 minutes (300000 milliseconds)
-    setInterval(makeAPICall, 1000*60*10);
+    setInterval(makeAPICall, 5000);
 })
 .catch((err)=>{
     console.log("MONGO DB connection failed !", err);
